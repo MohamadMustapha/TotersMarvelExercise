@@ -51,6 +51,8 @@
 		D1504BD82BB61842006953C9 /* TotersMarvelExercise */ = {
 			isa = PBXGroup;
 			children = (
+				D1504BF52BB6213F006953C9 /* Services */,
+				D1504BEC2BB6207E006953C9 /* Page */,
 				D1504BD92BB61842006953C9 /* TotersMarvelExerciseApp.swift */,
 				D1504BDB2BB61842006953C9 /* ContentView.swift */,
 				D1504BDD2BB61844006953C9 /* Assets.xcassets */,
@@ -65,6 +67,84 @@
 				D1504BE02BB61844006953C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D1504BEC2BB6207E006953C9 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				D1504BEE2BB620DD006953C9 /* Details */,
+				D1504BED2BB620D5006953C9 /* Home */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		D1504BED2BB620D5006953C9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D1504BF22BB62113006953C9 /* ViewModels */,
+				D1504BF12BB6210E006953C9 /* Models */,
+				D1504BEF2BB620F7006953C9 /* Views */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D1504BEE2BB620DD006953C9 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				D1504BF42BB6212C006953C9 /* Models */,
+				D1504BF32BB62122006953C9 /* ViewModels */,
+				D1504BF02BB62106006953C9 /* Views */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		D1504BEF2BB620F7006953C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D1504BF02BB62106006953C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D1504BF12BB6210E006953C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D1504BF22BB62113006953C9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D1504BF32BB62122006953C9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D1504BF42BB6212C006953C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D1504BF52BB6213F006953C9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +163,8 @@
 			dependencies = (
 			);
 			name = TotersMarvelExercise;
+			packageProductDependencies = (
+			);
 			productName = TotersMarvelExercise;
 			productReference = D1504BD62BB61842006953C9 /* TotersMarvelExercise.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +193,8 @@
 				Base,
 			);
 			mainGroup = D1504BCD2BB61842006953C9;
+			packageReferences = (
+			);
 			productRefGroup = D1504BD72BB61842006953C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
