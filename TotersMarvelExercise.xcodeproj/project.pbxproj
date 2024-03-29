@@ -19,6 +19,8 @@
 		D1504BDB2BB61842006953C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D1504BDD2BB61844006953C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1504BE02BB61844006953C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D152A2322BB73B7D00FFB6D5 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Home; sourceTree = "<group>"; };
+		D152A2332BB73CCD00FFB6D5 /* Details */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Details; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,9 +34,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D14B90CD2BB716DA00D6F00B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D1504BD92BB61842006953C9 /* TotersMarvelExerciseApp.swift */,
+				D1504BDB2BB61842006953C9 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D14B90CE2BB716E300D6F00B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D1504BDD2BB61844006953C9 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		D1504BCD2BB61842006953C9 = {
 			isa = PBXGroup;
 			children = (
+				D152A2332BB73CCD00FFB6D5 /* Details */,
+				D152A2322BB73B7D00FFB6D5 /* Home */,
 				D1504BD82BB61842006953C9 /* TotersMarvelExercise */,
 				D1504BD72BB61842006953C9 /* Products */,
 			);
@@ -51,11 +72,8 @@
 		D1504BD82BB61842006953C9 /* TotersMarvelExercise */ = {
 			isa = PBXGroup;
 			children = (
-				D1504BF52BB6213F006953C9 /* Services */,
-				D1504BEC2BB6207E006953C9 /* Page */,
-				D1504BD92BB61842006953C9 /* TotersMarvelExerciseApp.swift */,
-				D1504BDB2BB61842006953C9 /* ContentView.swift */,
-				D1504BDD2BB61844006953C9 /* Assets.xcassets */,
+				D14B90CD2BB716DA00D6F00B /* App */,
+				D14B90CE2BB716E300D6F00B /* Assets */,
 				D1504BDF2BB61844006953C9 /* Preview Content */,
 			);
 			path = TotersMarvelExercise;
@@ -67,84 +85,6 @@
 				D1504BE02BB61844006953C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		D1504BEC2BB6207E006953C9 /* Page */ = {
-			isa = PBXGroup;
-			children = (
-				D1504BEE2BB620DD006953C9 /* Details */,
-				D1504BED2BB620D5006953C9 /* Home */,
-			);
-			path = Page;
-			sourceTree = "<group>";
-		};
-		D1504BED2BB620D5006953C9 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				D1504BF22BB62113006953C9 /* ViewModels */,
-				D1504BF12BB6210E006953C9 /* Models */,
-				D1504BEF2BB620F7006953C9 /* Views */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		D1504BEE2BB620DD006953C9 /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				D1504BF42BB6212C006953C9 /* Models */,
-				D1504BF32BB62122006953C9 /* ViewModels */,
-				D1504BF02BB62106006953C9 /* Views */,
-			);
-			path = Details;
-			sourceTree = "<group>";
-		};
-		D1504BEF2BB620F7006953C9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		D1504BF02BB62106006953C9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		D1504BF12BB6210E006953C9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D1504BF22BB62113006953C9 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		D1504BF32BB62122006953C9 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		D1504BF42BB6212C006953C9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D1504BF52BB6213F006953C9 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +304,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,6 +334,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
