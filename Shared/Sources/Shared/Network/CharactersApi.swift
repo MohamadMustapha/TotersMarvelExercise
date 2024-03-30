@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CharactersApi: Api {
+public protocol CharactersApi: Api {
 
     func getCharacters() async throws -> MarvelCharacterResponse
 }

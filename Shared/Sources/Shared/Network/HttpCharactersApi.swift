@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct HttpCharactersApi: CharactersApi {
+public struct HttpCharactersApi: CharactersApi {
 
-    func getCharacters() async throws -> MarvelCharacterResponse {
+    public init() { }
+    
+    public func getCharacters() async throws -> MarvelCharacterResponse {
         if let url: URL = .init(string: getUrlString(route: "characters", limit: 100)) {
             let (data, response) = try await URLSession.shared.data(from: url)
             return try handleResponse(data: data, response: response)

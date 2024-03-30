@@ -8,19 +8,19 @@
 import CryptoKit
 import Foundation
 
-enum ApiError: Error {
+public enum ApiError: Error {
 
     case badResponse
     case invalidURL
     case statusCodeNotOk
 }
 
-protocol Api {
+public protocol Api {
 
     func getUrlString(route: String, limit: Int) -> String
 }
 
-extension Api {
+public extension Api {
 
     private var urlString: String { "https://gateway.marvel.com:443/v1/public" }
     private var privateKey: String { "1d0b2d60eca2b1abf4e3aed7ac632004930251fe" }
