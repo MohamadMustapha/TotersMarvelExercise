@@ -12,9 +12,9 @@ struct DetailsServiceImpl: DetailsService {
 
     let charactersApi: CharactersApi
 
-    func getCharacter(by id: Int) async throws -> Result<CharacterModel, Error> {
+    func getCharacter(by characterId: Int) async throws -> Result<CharacterModel, Error> {
         do {
-            let response: CharacterResponse = try await charactersApi.getCharacter(by: id)
+            let response: CharacterResponse = try await charactersApi.getCharacter(by: characterId)
             return .success(try await parseMarvelCharacter(response: response))
         } catch {
             return .failure(error)
@@ -24,7 +24,16 @@ struct DetailsServiceImpl: DetailsService {
     func getComics(upTo limit: Int, by characterId: Int) async throws -> Result<[ComicModel], Error> {
         do {
             let response: ComicsResponse = try await charactersApi.getComics(upTo: limit, by: characterId)
-            return .success(try await parseMarvelComic(response: response))
+            return .success(try await parseMarvelComics(response: response))
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func getEvents(upTo limit: Int, by characterId: Int) async throws -> Result<[EventModel], Error> {
+        do {
+            let response: EventsResponse = try await charactersApi.getEvents(upTo: limit, by: characterId)
+            return .success(try await parseMarvelEvents(response: response))
         } catch {
             return .failure(error)
         }
@@ -41,11 +50,18 @@ struct DetailsServiceImpl: DetailsService {
 
     }
 
-    private func parseMarvelComic(response: ComicsResponse) async throws -> [ComicModel] {
+    private func parseMarvelComics(response: ComicsResponse) async throws -> [ComicModel] {
         return response.data.results.map { .init(id: $0.id,
                                                  title: $0.title,
                                                  imageUrl: "\($0.thumbnail.path).\($0.thumbnail.extension)")
         }
     }
-}
 
+    private func parseMarvelEvents(response: EventsResponse) async throws -> [EventModel] {
+        return response.data.results.map { .init(id: $0.id,
+                                                 title: $0.title,
+                                                 start: $0.start,
+                                                 end: $0.end,
+                                                 imageUrl: "\($0.thumbnail.path).\($0.thumbnail.extension)")}
+    }
+}
