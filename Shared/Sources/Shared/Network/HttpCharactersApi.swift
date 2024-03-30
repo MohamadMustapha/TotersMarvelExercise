@@ -28,7 +28,7 @@ public struct HttpCharactersApi: CharactersApi {
         throw ApiError.invalidURL
     }
 
-    private func handleResponse(data: Data, response: URLResponse) throws -> MarvelCharacterResponse {
+    private func handleResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
         guard let response = response as? HTTPURLResponse else {
             throw ApiError.badResponse
         }
@@ -36,7 +36,6 @@ public struct HttpCharactersApi: CharactersApi {
             throw ApiError.statusCodeNotOk
         }
 
-        let result = try JSONDecoder().decode(MarvelCharacterResponse.self, from: data)
-        return result
+        return try JSONDecoder().decode(T.self, from: data)
     }
 }
