@@ -10,9 +10,18 @@ import Foundation
 public struct HttpCharactersApi: CharactersApi {
 
     public init() { }
-    
+
     public func getCharacters() async throws -> MarvelCharacterResponse {
-        if let url: URL = .init(string: getUrlString(route: "characters", limit: 100)) {
+        // TODO: refactor the route
+        if let url: URL = .init(string: getUrlString(limit: 100)) {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            return try handleResponse(data: data, response: response)
+        }
+        throw ApiError.invalidURL
+    }
+
+    public func getCharacter(by id: Int) async throws -> MarvelCharacterResponse {
+        if let url: URL = .init(string: getUrlString(route: "/\(id)", limit: 3)) {
             let (data, response) = try await URLSession.shared.data(from: url)
             return try handleResponse(data: data, response: response)
         }

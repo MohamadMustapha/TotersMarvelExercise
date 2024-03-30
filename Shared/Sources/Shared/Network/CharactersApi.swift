@@ -10,4 +10,6 @@ import Foundation
 public protocol CharactersApi: Api {
 
     func getCharacters() async throws -> MarvelCharacterResponse
+
+    func getCharacter(by id: Int) async throws -> MarvelCharacterResponse
 }

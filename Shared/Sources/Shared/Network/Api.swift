@@ -22,7 +22,7 @@ public protocol Api {
 
 public extension Api {
 
-    private var urlString: String { "https://gateway.marvel.com:443/v1/public" }
+    private var urlString: String { "https://gateway.marvel.com:443/v1/public/characters" }
     private var privateKey: String { "1d0b2d60eca2b1abf4e3aed7ac632004930251fe" }
     private var publicKey: String { "8d3ab5dd12e27b6b47f2516423be5add" }
 
@@ -31,9 +31,9 @@ public extension Api {
         return hash.map { String(format: "%02hhx", $0) }.joined()
     }
 
-    func getUrlString(route: String, limit: Int) -> String {
+    func getUrlString(route: String = "", limit: Int) -> String {
         let timeStamp = String(Date().timeIntervalSince1970)
         let hash = MD5Hash(from: "\(timeStamp)\(privateKey)\(publicKey)")
-        return "\(urlString)/\(route)?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(hash)&limit=\(limit)"
+        return "\(urlString)\(route)?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(hash)&limit=\(limit)"
     }
 }
