@@ -9,15 +9,15 @@ import Foundation
 
 struct HttpCharactersApi: CharactersApi {
 
-    func getCharacters() async throws -> [MarvelCharacter] {
-        if let url: URL = .init(string: getUrlString(route: "characters")) {
+    func getCharacters() async throws -> MarvelCharacterResponse {
+        if let url: URL = .init(string: getUrlString(route: "characters", limit: 100)) {
             let (data, response) = try await URLSession.shared.data(from: url)
             return try handleResponse(data: data, response: response)
         }
         throw ApiError.invalidURL
     }
 
-    private func handleResponse(data: Data, response: URLResponse) throws -> [MarvelCharacter] {
+    private func handleResponse(data: Data, response: URLResponse) throws -> MarvelCharacterResponse {
         guard let response = response as? HTTPURLResponse else {
             throw ApiError.badResponse
         }
@@ -25,7 +25,7 @@ struct HttpCharactersApi: CharactersApi {
             throw ApiError.statusCodeNotOk
         }
 
-        let result = try JSONDecoder().decode(MarvelCharacterDataWrapper.self, from: data)
-        return result.data.results
+        let result = try JSONDecoder().decode(MarvelCharacterResponse.self, from: data)
+        return result
     }
 }

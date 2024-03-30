@@ -9,5 +9,5 @@ import Foundation
 
 protocol CharactersApi: Api {
 
-    func getCharacters() async throws -> [MarvelCharacter]
+    func getCharacters() async throws -> MarvelCharacterResponse
 }

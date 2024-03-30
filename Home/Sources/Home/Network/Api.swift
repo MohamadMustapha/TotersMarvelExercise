@@ -17,7 +17,7 @@ enum ApiError: Error {
 
 protocol Api {
 
-    func getUrlString(route: String) -> String
+    func getUrlString(route: String, limit: Int) -> String
 }
 
 extension Api {
@@ -31,9 +31,9 @@ extension Api {
         return hash.map { String(format: "%02hhx", $0) }.joined()
     }
 
-    func getUrlString(route: String) -> String {
+    func getUrlString(route: String, limit: Int) -> String {
         let timeStamp = String(Date().timeIntervalSince1970)
         let hash = MD5Hash(from: "\(timeStamp)\(privateKey)\(publicKey)")
-        return "\(urlString)/\(route)?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(hash)&limit=100"
+        return "\(urlString)/\(route)?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(hash)&limit=\(limit)"
     }
 }

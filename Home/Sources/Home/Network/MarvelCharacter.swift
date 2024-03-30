@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MarvelCharacterDataWrapper: Decodable {
+struct MarvelCharacterResponse: Decodable {
 
     let data: MarvelCharacterDataContainer
 }
