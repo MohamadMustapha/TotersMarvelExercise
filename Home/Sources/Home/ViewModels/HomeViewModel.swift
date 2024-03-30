@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import Shared
 
 class HomeViewModel: ObservableObject {
 
     private let homeService: HomeService = HomeServiceImpl(charactersApi: HttpCharactersApi())
-    @Published private(set) var characters: [CharacterListCardModel] = []
+    @Published private(set) var characters: [CharacterModel] = []
 
     init() { }
 

@@ -14,6 +14,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             CharacterListView(items: viewModel.characters)
+                .navigationTitle(.init("Marvel"))
         }
         .task {
             await viewModel.onAppear()

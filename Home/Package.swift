@@ -13,6 +13,7 @@ let package: Package = .init(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .kingFisherPackageDependency,
+        .sharedPackageDependency,
         .swiftLintPackageDependency
     ],
     targets: [
@@ -34,6 +35,8 @@ fileprivate extension Package.Dependency {
     static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
                                                                          exact: "7.10.2")
 
+    static let sharedPackageDependency: Package.Dependency = package(path: "../Shared")
+
     static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint",
                                                                         exact: "0.54.0")
 }
@@ -45,6 +48,7 @@ fileprivate extension String {
 
     // MARK: Packages
     static let kingFisher: String = "Kingfisher"
+    static let shared: String = "Shared"
     static let swiftLint: String = "SwiftLint"
 
     // MARK: Plugins
@@ -61,7 +65,8 @@ fileprivate extension SupportedPlatform {
 fileprivate extension Target {
 
     static let homeTarget: Target = target(name: .home,
-                                           dependencies: [.kingFisherDependency],
+                                           dependencies: [.kingFisherDependency,
+                                                          .sharedDependency],
                                            plugins: [.swiftLintPlugin])
     static let homeTestTarget: Target = testTarget(name: .home.testTarget,
                                                    dependencies: [.homeDependency],
@@ -72,6 +77,7 @@ fileprivate extension Target.Dependency {
 
     static let homeDependency: Target.Dependency = byName(name: .home)
     static let kingFisherDependency: Target.Dependency = byName(name: .kingFisher)
+    static let sharedDependency: Target.Dependency = byName(name: .shared)
 }
 
 fileprivate extension Target.PluginUsage {

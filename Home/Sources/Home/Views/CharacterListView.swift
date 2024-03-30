@@ -5,11 +5,12 @@
 //  Created by Mohamad Mustapha on 29/03/2024.
 //
 
+import Shared
 import SwiftUI
 
 public struct CharacterListView: View {
 
-    public typealias Item = CharacterListCardModel
+    public typealias Item = CharacterModel
 
     private let items: [Item]
 
@@ -41,7 +42,7 @@ public struct CharacterListView: View {
                                     name: "Captain America",
                                     description: "Captain America is america's hero",
                                     imageUrl: "https://shorturl.at/txMRS"),
-                              .init(id: 1,
+                              .init(id: 2,
                                     name: "Captain America",
                                     description: "Captain America is america's hero",
                                     imageUrl: "https://shorturl.at/txMRS")])

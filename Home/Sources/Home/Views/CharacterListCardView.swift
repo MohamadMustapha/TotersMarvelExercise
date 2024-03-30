@@ -6,17 +6,18 @@
 //
 
 import Kingfisher
+import Shared
 import SwiftUI
 
 public struct CharacterListCardView: View {
 
-    public typealias Item = CharacterListCardModel
+    public typealias Item = CharacterModel
 
     private static let imageSize: CGFloat = 130
 
     private let item: Item
 
-    public init(item: CharacterListCardModel) {
+    public init(item: Item) {
         self.item = item
     }
 
@@ -45,7 +46,6 @@ public struct CharacterListCardView: View {
                     .lineLimit(3)
                     .multilineTextAlignment(.leading)
             }
-            .padding(.top, 10)
 
             Spacer()
         }
@@ -55,8 +55,8 @@ public struct CharacterListCardView: View {
 #Preview {
 
     CharacterListCardView(item: .init(id: 1,
-                                           name: "Captain America",
-                                           description: "Captain America is america's hero",
-                                           imageUrl: "https://shorturl.at/txMRS") )
+                                      name: "Captain America",
+                                      description: "Captain America is america's hero",
+                                      imageUrl: "https://shorturl.at/txMRS") )
     .padding()
 }
