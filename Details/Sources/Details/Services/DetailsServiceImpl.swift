@@ -39,6 +39,15 @@ struct DetailsServiceImpl: DetailsService {
         }
     }
 
+    func getSeries(upTo limit: Int, by characterId: Int) async throws -> Result<[SeriesModel], Error> {
+        do {
+            let response: SeriesResponse = try await charactersApi.getSeries(upTo: limit, by: characterId)
+            return .success(try await parseMarvelSeries(response: response))
+        } catch {
+            return .failure(error)
+        }
+    }
+
     private func parseMarvelCharacter(response: CharacterResponse) async throws -> CharacterModel {
         guard let marvelCharacter: Character =  response.data.results.first else {
             throw DetailsServiceError.characterNotFound
@@ -63,5 +72,12 @@ struct DetailsServiceImpl: DetailsService {
                                                  start: $0.start,
                                                  end: $0.end,
                                                  imageUrl: "\($0.thumbnail.path).\($0.thumbnail.extension)")}
+    }
+
+    private func parseMarvelSeries(response: SeriesResponse) async throws -> [SeriesModel] {
+        return response.data.results.map { .init(id: $0.id,
+                                                 title: $0.title,
+                                                 imageUrl: "\($0.thumbnail.path).\($0.thumbnail.extension)")
+        }
     }
 }
