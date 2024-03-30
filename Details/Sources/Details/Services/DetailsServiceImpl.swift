@@ -21,9 +21,9 @@ struct DetailsServiceImpl: DetailsService {
         }
     }
 
-    func getComics(by characterId: Int) async throws -> Result<[ComicModel], Error> {
+    func getComics(upTo limit: Int, by characterId: Int) async throws -> Result<[ComicModel], Error> {
         do {
-            let response: ComicsResponse = try await charactersApi.getComics(by: characterId)
+            let response: ComicsResponse = try await charactersApi.getComics(upTo: limit, by: characterId)
             return .success(try await parseMarvelComic(response: response))
         } catch {
             return .failure(error)

@@ -19,7 +19,7 @@ struct HomeServiceImpl: HomeService {
 
     func getCharacters() async -> Result<[CharacterModel], Error> {
         do {
-            let response: CharacterResponse = try await charactersApi.getCharacters()
+            let response: CharacterResponse = try await charactersApi.getCharacters(upTo: 100)
             return .success(await parseMarvelCharacters(response: response))
         } catch {
             return .failure(error)

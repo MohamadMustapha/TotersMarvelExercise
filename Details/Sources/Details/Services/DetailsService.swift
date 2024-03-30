@@ -12,7 +12,7 @@ protocol DetailsService {
 
     func getCharacter(by id: Int) async throws -> Result<CharacterModel, Error>
 
-    func getComics(by characterId: Int) async throws -> Result<[ComicModel], Error>
+    func getComics(upTo limit: Int, by characterId: Int) async throws -> Result<[ComicModel], Error>
 }
 
 enum DetailsServiceError: Error {
