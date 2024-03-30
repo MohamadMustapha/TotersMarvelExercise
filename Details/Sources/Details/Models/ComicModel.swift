@@ -1,5 +1,5 @@
 //
-//  MarvelComicModel.swift
+//  ComicModel.swift
 //
 //
 //  Created by Mohamad Mustapha on 30/03/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MarvelComicModel: Identifiable {
+public struct ComicModel: Identifiable {
 
     public let id: Int
 

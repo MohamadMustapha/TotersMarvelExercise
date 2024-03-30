@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct CharacterListView: View {
 
-    public typealias Item = MarvelCharacterModel
+    public typealias Item = CharacterModel
 
     private let items: [Item]
 

@@ -11,7 +11,7 @@ public struct HttpCharactersApi: CharactersApi {
 
     public init() { }
 
-    public func getCharacters() async throws -> MarvelCharacterResponse {
+    public func getCharacters() async throws -> CharacterResponse {
         // TODO: refactor the route
         if let url: URL = .init(string: getUrlString(limit: 100)) {
             let (data, response) = try await URLSession.shared.data(from: url)
@@ -20,7 +20,7 @@ public struct HttpCharactersApi: CharactersApi {
         throw ApiError.invalidURL
     }
 
-    public func getCharacter(by id: Int) async throws -> MarvelCharacterResponse {
+    public func getCharacter(by id: Int) async throws -> CharacterResponse {
         if let url: URL = .init(string: getUrlString(route: "/\(id)", limit: 1)) {
             let (data, response) = try await URLSession.shared.data(from: url)
             return try handleResponse(data: data, response: response)

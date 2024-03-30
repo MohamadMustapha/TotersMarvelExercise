@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MarvelCharacterModel: Identifiable {
+public struct CharacterModel: Identifiable {
 
     public let id: Int
     public let name: String

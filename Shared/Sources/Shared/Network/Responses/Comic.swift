@@ -1,5 +1,5 @@
 //
-//  MarvelComics.swift
+//  Comic.swift
 //
 //
 //  Created by Mohamad Mustapha on 30/03/2024.

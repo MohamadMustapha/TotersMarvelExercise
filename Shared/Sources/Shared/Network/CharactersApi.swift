@@ -9,9 +9,9 @@ import Foundation
 
 public protocol CharactersApi: Api {
 
-    func getCharacters() async throws -> MarvelCharacterResponse
+    func getCharacters() async throws -> CharacterResponse
 
-    func getCharacter(by id: Int) async throws -> MarvelCharacterResponse
+    func getCharacter(by id: Int) async throws -> CharacterResponse
 
     func getComics(by characterId: Int) async throws -> ComicsResponse
 }

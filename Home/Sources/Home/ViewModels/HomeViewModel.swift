@@ -12,7 +12,7 @@ class HomeViewModel: ObservableObject {
 
     enum UIState {
 
-        case loading, loaded(marvelCharacters: [MarvelCharacterModel]), error
+        case loading, loaded(marvelCharacters: [CharacterModel]), error
     }
 
     @Published private(set) var uiState: UIState = .loading
@@ -23,7 +23,7 @@ class HomeViewModel: ObservableObject {
 
     func onAppear() async {
         do {
-            let marvelCharacters: [MarvelCharacterModel] = try await homeService.getCharacters().get()
+            let marvelCharacters: [CharacterModel] = try await homeService.getCharacters().get()
             withAnimation {
                 self.uiState = .loaded(marvelCharacters: marvelCharacters)
             }
