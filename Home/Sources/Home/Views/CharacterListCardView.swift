@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct CharacterListCardView: View {
 
-    public typealias Item = CharacterModel
+    public typealias Item = MarvelCharacterModel
 
     private static let imageSize: CGFloat = 130
 

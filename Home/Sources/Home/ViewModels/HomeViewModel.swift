@@ -5,25 +5,31 @@
 //  Created by Mohamad Mustapha on 29/03/2024.
 //
 
-import Foundation
 import Shared
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
 
-    private let homeService: HomeService = HomeServiceImpl(charactersApi: HttpCharactersApi())
-    @Published private(set) var characters: [CharacterModel] = []
+    enum UIState {
 
-    init() { }
+        case loading, loaded(marvelCharacters: [MarvelCharacterModel]), error
+    }
+
+    @Published private(set) var uiState: UIState = .loading
+
+    private let homeService: HomeService = HomeServiceImpl(charactersApi: HttpCharactersApi())
+
+    init() {}
 
     func onAppear() async {
         do {
-            let marvelCharacters = try await homeService.getCharacters().get()
-            characters = marvelCharacters.map { .init(id: $0.id,
-                                                      name: $0.name,
-                                                      description: $0.description,
-                                                      imageUrl: "\($0.thumbnail.path).\($0.thumbnail.extension)") }
+            let marvelCharacters: [MarvelCharacterModel] = try await homeService.getCharacters().get()
+            withAnimation {
+                self.uiState = .loaded(marvelCharacters: marvelCharacters)
+            }
         } catch {
             print("Could not retrieve characters from service with error: \(error.localizedDescription)")
+            self.uiState = .error
         }
     }
 }

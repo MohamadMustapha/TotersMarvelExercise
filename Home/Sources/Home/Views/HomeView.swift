@@ -13,8 +13,17 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            CharacterListView(items: viewModel.characters)
-                .navigationTitle(.init("Marvel"))
+            switch viewModel.uiState {
+
+            case .loading:
+                ProgressView()
+                    .controlSize(.large)
+            case .loaded(let marvelCharacters):
+                CharacterListView(items: marvelCharacters)
+                    .navigationTitle(.init("Marvel"))
+            case .error:
+                EmptyView()
+            }
         }
         .task {
             await viewModel.onAppear()
