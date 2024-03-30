@@ -4,38 +4,31 @@
 import PackageDescription
 
 let package: Package = .init(
-    name: .details,
+    name: .shared,
     platforms: [.iOS],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .detailsProduct
+        .sharedProduct
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .kingFisherPackageDependency,
-        .sharedPackageDependency,
         .swiftLintPackageDependency
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .detailsTarget,
-        .detailsTestTarget
+        .sharedTarget,
+        .sharedTestTarget
     ]
 )
 
 fileprivate extension Product {
 
-    static let detailsProduct: Product = .library(name: .details,
-                                                  targets: [.details])
+    static let sharedProduct: Product = .library(name: .shared,
+                                               targets: [.shared])
 }
 
 fileprivate extension Package.Dependency {
-
-    static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
-                                                                         exact: "7.10.2")
-
-    static let sharedPackageDependency: Package.Dependency = package(path: "../Shared")
 
     static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint",
                                                                         exact: "0.54.0")
@@ -44,11 +37,9 @@ fileprivate extension Package.Dependency {
 fileprivate extension String {
 
     // MARK: Folders
-    static let details: String = "Details"
+    static let shared: String = "Shared"
 
     // MARK: Packages
-    static let kingFisher: String = "Kingfisher"
-    static let shared: String = "Shared"
     static let swiftLint: String = "SwiftLint"
 
     // MARK: Plugins
@@ -64,19 +55,16 @@ fileprivate extension SupportedPlatform {
 
 fileprivate extension Target {
 
-    static let detailsTarget: Target = target(name: .details,
-                                              dependencies: [.kingFisherDependency,
-                                                             .sharedDependency],
-                                              plugins: [.swiftLintPlugin])
-    static let detailsTestTarget: Target = testTarget(name: .details.testTarget,
-                                                      dependencies: [.detailsDependency],
-                                                      plugins: [.swiftLintPlugin])
+    static let sharedTarget: Target = target(name: .shared,
+                                           plugins: [.swiftLintPlugin])
+
+    static let sharedTestTarget: Target = testTarget(name: .shared.testTarget,
+                                                   dependencies: [.sharedDependency],
+                                                   plugins: [.swiftLintPlugin])
 }
 
 fileprivate extension Target.Dependency {
 
-    static let detailsDependency: Target.Dependency = byName(name: .details)
-    static let kingFisherDependency: Target.Dependency = byName(name: .kingFisher)
     static let sharedDependency: Target.Dependency = byName(name: .shared)
 }
 

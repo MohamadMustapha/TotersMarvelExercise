@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D14A3E1B2BB891AF00F3D242 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = D14A3E1A2BB891AF00F3D242 /* Shared */; };
 		D1504BDA2BB61842006953C9 /* TotersMarvelExerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1504BD92BB61842006953C9 /* TotersMarvelExerciseApp.swift */; };
 		D1504BDC2BB61842006953C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1504BDB2BB61842006953C9 /* ContentView.swift */; };
 		D1504BDE2BB61844006953C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1504BDD2BB61844006953C9 /* Assets.xcassets */; };
 		D1504BE12BB61844006953C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1504BE02BB61844006953C9 /* Preview Assets.xcassets */; };
 		D15064A72BB794FE0052D5CF /* Details in Frameworks */ = {isa = PBXBuildFile; productRef = D15064A62BB794FE0052D5CF /* Details */; };
 		D15064A92BB794FE0052D5CF /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = D15064A82BB794FE0052D5CF /* Home */; };
-		D15401E32BB85102002EBABB /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = D15401E22BB85102002EBABB /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D14A3E192BB88C2000F3D242 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Shared; sourceTree = "<group>"; };
 		D1504BD62BB61842006953C9 /* TotersMarvelExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotersMarvelExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1504BD92BB61842006953C9 /* TotersMarvelExerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotersMarvelExerciseApp.swift; sourceTree = "<group>"; };
 		D1504BDB2BB61842006953C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -24,7 +25,6 @@
 		D1504BE02BB61844006953C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D152A2322BB73B7D00FFB6D5 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Home; sourceTree = "<group>"; };
 		D152A2332BB73CCD00FFB6D5 /* Details */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Details; sourceTree = "<group>"; };
-		D15401E12BB84FAC002EBABB /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Shared; path = ../Shared; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +34,7 @@
 			files = (
 				D15064A72BB794FE0052D5CF /* Details in Frameworks */,
 				D15064A92BB794FE0052D5CF /* Home in Frameworks */,
-				D15401E32BB85102002EBABB /* Shared in Frameworks */,
+				D14A3E1B2BB891AF00F3D242 /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 		D1504BCD2BB61842006953C9 = {
 			isa = PBXGroup;
 			children = (
-				D15401E12BB84FAC002EBABB /* Shared */,
+				D14A3E192BB88C2000F3D242 /* Shared */,
 				D152A2332BB73CCD00FFB6D5 /* Details */,
 				D152A2322BB73B7D00FFB6D5 /* Home */,
 				D1504BD82BB61842006953C9 /* TotersMarvelExercise */,
@@ -122,7 +122,7 @@
 			packageProductDependencies = (
 				D15064A62BB794FE0052D5CF /* Details */,
 				D15064A82BB794FE0052D5CF /* Home */,
-				D15401E22BB85102002EBABB /* Shared */,
+				D14A3E1A2BB891AF00F3D242 /* Shared */,
 			);
 			productName = TotersMarvelExercise;
 			productReference = D1504BD62BB61842006953C9 /* TotersMarvelExercise.app */;
@@ -391,6 +391,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D14A3E1A2BB891AF00F3D242 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
 		D15064A62BB794FE0052D5CF /* Details */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Details;
@@ -398,10 +402,6 @@
 		D15064A82BB794FE0052D5CF /* Home */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Home;
-		};
-		D15401E22BB85102002EBABB /* Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
