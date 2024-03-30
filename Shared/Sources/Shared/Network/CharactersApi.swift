@@ -12,4 +12,6 @@ public protocol CharactersApi: Api {
     func getCharacters() async throws -> MarvelCharacterResponse
 
     func getCharacter(by id: Int) async throws -> MarvelCharacterResponse
+
+    func getComics(by characterId: Int) async throws -> ComicsResponse
 }

@@ -21,11 +21,20 @@ public struct HttpCharactersApi: CharactersApi {
     }
 
     public func getCharacter(by id: Int) async throws -> MarvelCharacterResponse {
-        if let url: URL = .init(string: getUrlString(route: "/\(id)", limit: 3)) {
+        if let url: URL = .init(string: getUrlString(route: "/\(id)", limit: 1)) {
             let (data, response) = try await URLSession.shared.data(from: url)
             return try handleResponse(data: data, response: response)
         }
         throw ApiError.invalidURL
+    }
+
+    public func getComics(by characterId: Int) async throws -> ComicsResponse {
+        if let url: URL = .init(string: getUrlString(route: "/\(characterId)/comics", limit: 3)) {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            return try handleResponse(data: data, response: response)
+        }
+        throw ApiError.invalidURL
+
     }
 
     private func handleResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {

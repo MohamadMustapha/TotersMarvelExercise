@@ -8,15 +8,6 @@
 import Foundation
 import Shared
 
-protocol DetailsService {
-
-    func getCharacter(by id: Int) async throws -> Result<MarvelCharacterModel, Error>
-}
-
-enum DetailsServiceError: Error {
-    case characterNotFound
-}
-
 struct DetailsServiceImpl: DetailsService {
 
     let charactersApi: CharactersApi
@@ -25,6 +16,15 @@ struct DetailsServiceImpl: DetailsService {
         do {
             let response: MarvelCharacterResponse = try await charactersApi.getCharacter(by: id)
             return .success(try await parseMarvelCharacter(response: response))
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func getComics(by characterId: Int) async throws -> Result<[MarvelComicModel], Error> {
+        do {
+            let response: ComicsResponse = try await charactersApi.getComics(by: characterId)
+            return .success(try await parseMarvelComic(response: response))
         } catch {
             return .failure(error)
         }
@@ -39,6 +39,13 @@ struct DetailsServiceImpl: DetailsService {
                      description: marvelCharacter.description,
                      imageUrl: "\(marvelCharacter.thumbnail.path).\(marvelCharacter.thumbnail.extension)")
 
+    }
+
+    private func parseMarvelComic(response: ComicsResponse) async throws -> [MarvelComicModel] {
+        return response.data.results.map { .init(id: $0.id,
+                                                 title: $0.title,
+                                                 imageUrl: "\($0.thumbnail.path).\($0.thumbnail.extension)")
+        }
     }
 }
 
