@@ -22,6 +22,7 @@ struct HomeView: View {
                 CharacterListView(items: marvelCharacters)
                     .navigationTitle(.init("Marvel"))
             case .error:
+                #warning("Do error view")
                 EmptyView()
             }
         }

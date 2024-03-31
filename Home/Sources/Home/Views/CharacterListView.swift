@@ -14,25 +14,23 @@ public struct CharacterListView: View {
 
     private let items: [Item]
 
+    private let columns: [GridItem] = [.init(.flexible(), spacing: 20, alignment: .top),
+                                       .init(.flexible(), spacing: 20, alignment: .top)]
+
     public init(items: [Item]) {
         self.items = items
     }
 
     public var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 20) {
-                ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(items, id: \.id) { item in
                     CharacterListCardView(item: item)
-                    Divider()
-                        .frame(height: 0.5)
-                        .foregroundStyle(.gray)
-                        .isHidden(index == items.count - 1, remove: index == items.count - 1)
                 }
             }
         }
         .scrollIfNeeded(axes: .vertical)
-        .padding()
-        .ignoresSafeArea(.all, edges: .bottom)
+        .padding(.horizontal)
     }
 }
 
@@ -40,10 +38,19 @@ public struct CharacterListView: View {
 
     CharacterListView(items: [.init(id: 1,
                                     name: "Captain America",
-                                    description: "Captain America is america's hero",
+                                    description: "Captain America is jy's hero",
                                     imageUrl: "https://shorturl.at/txMRS"),
                               .init(id: 2,
                                     name: "Captain America",
                                     description: "Captain America is america's hero",
+                                    imageUrl: "https://shorturl.at/txMRS"),
+                              .init(id: 3,
+                                    name: "Captain America",
+                                    description: "Captain America is america's hero",
+                                    imageUrl: "https://shorturl.at/txMRS"),
+                              .init(id: 4,
+                                    name: "Captain America",
+                                    description: "Captain America is america's hero",
                                     imageUrl: "https://shorturl.at/txMRS")])
+    .padding()
 }

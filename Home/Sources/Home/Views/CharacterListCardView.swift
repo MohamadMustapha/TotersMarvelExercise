@@ -13,7 +13,7 @@ public struct CharacterListCardView: View {
 
     public typealias Item = CharacterModel
 
-    private static let imageSize: CGFloat = 130
+    private static let imageSize: CGFloat = 100
 
     private let item: Item
 
@@ -22,32 +22,31 @@ public struct CharacterListCardView: View {
     }
 
     public var body: some View {
-        HStack(alignment: .top, spacing: 10) {
+        VStack(alignment: .leading) {
             KFImage(.init(string: item.imageUrl))
                 .placeholder {
                     ProgressView()
+                        .controlSize(.large)
                 }
+                .fade(duration: 0.5)
+                .forceTransition(true)
                 .resizable()
-                .scaledToFill()
-                .frame(width: Self.imageSize, height: Self.imageSize)
-                .clipShape(RoundedRectangle(cornerRadius: 24))
+                .aspectRatio(27/40, contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
 
-            VStack(alignment: .leading) {
-                Text(item.name)
-                    .tracking(0.2)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .lineLimit(2)
+            Text(item.name)
+                .tracking(0.2)
+                .font(.title2)
+                .bold()
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
 
-                Text(item.description)
-                    .tracking(0.2)
-                    .font(.caption)
-                    .foregroundStyle(.gray)
-                    .lineLimit(3)
-                    .multilineTextAlignment(.leading)
-            }
-
-            Spacer()
+            Text(item.description)
+                .tracking(0.2)
+                .font(.caption)
+                .foregroundStyle(.gray)
+                .lineLimit(3)
+                .multilineTextAlignment(.leading)
         }
     }
 }
@@ -58,5 +57,4 @@ public struct CharacterListCardView: View {
                                       name: "Captain America",
                                       description: "Captain America is america's hero",
                                       imageUrl: "https://shorturl.at/txMRS") )
-    .padding()
 }
