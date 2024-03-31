@@ -31,6 +31,10 @@ public struct HttpCharactersApi: CharactersApi {
         return try await decode(url: generateUrl(route: "/\(characterId)/series", limit: limit))
     }
 
+    public func getStories(upTo limit: Int, by characterId: Int) async throws -> StoriesResponse {
+        return try await decode(url: generateUrl(route: "/\(characterId)/stories", limit: limit))
+    }
+
     private func decode<T: Decodable>(url: URL?) async throws -> T {
         guard let url else { throw ApiError.invalidURL}
 

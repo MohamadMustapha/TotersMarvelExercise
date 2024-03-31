@@ -14,4 +14,5 @@ public protocol CharactersApi: Api {
     func getComics(upTo limit: Int, by characterId: Int) async throws -> ComicsResponse
     func getEvents(upTo limit: Int, by characterId: Int) async throws -> EventsResponse
     func getSeries(upTo limit: Int, by characterId: Int) async throws -> SeriesResponse
+    func getStories(upTo limit: Int, by characterId: Int) async throws -> StoriesResponse
 }
