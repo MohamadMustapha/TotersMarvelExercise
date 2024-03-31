@@ -19,5 +19,8 @@ protocol DetailsService {
 
 enum DetailsServiceError: Error {
 
-    case characterNotFound
+    case objectNotFound
+    case invalidCharacter
+    case invalidComic
+
 }

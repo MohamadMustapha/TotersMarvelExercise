@@ -9,20 +9,20 @@ import Foundation
 
 public struct EventsResponse: Decodable {
 
-    public let data: EventsDataContainer
+    public let data: EventsDataContainer?
 }
 
 public struct EventsDataContainer: Decodable {
 
-    public let results: [Event]
+    public let results: [Event]?
 }
 
 public struct Event: Decodable, Identifiable {
 
-    public let id: Int
+    public let id: Int?
 
-    public let title: String
-    public let start: Date
-    public let end: Date
-    public let thumbnail: Thumbnail
+    public let title: String?
+    public let start: Date?
+    public let end: Date?
+    public let thumbnail: Thumbnail?
 }

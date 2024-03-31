@@ -9,18 +9,18 @@ import Foundation
 
 public struct StoriesResponse: Decodable {
 
-    public let data: StoriesDataContainer
+    public let data: StoriesDataContainer?
 }
 
 public struct StoriesDataContainer: Decodable {
 
-    public let results: [Story]
+    public let results: [Story]?
 }
 
 public struct Story: Decodable, Identifiable {
 
-    public let id: Int
+    public let id: Int?
 
-    public let title: String
-    public let thumbnail: Thumbnail
+    public let title: String?
+    public let thumbnail: Thumbnail?
 }

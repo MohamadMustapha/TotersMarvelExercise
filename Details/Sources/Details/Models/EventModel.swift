@@ -15,12 +15,4 @@ public struct EventModel: Identifiable {
     public let start: Date
     public let end: Date
     public let imageUrl: String
-
-    init(id: Int, title: String, start: Date, end: Date, imageUrl: String) {
-        self.id = id
-        self.title = title
-        self.start = start
-        self.end = end
-        self.imageUrl = imageUrl
-    }
 }

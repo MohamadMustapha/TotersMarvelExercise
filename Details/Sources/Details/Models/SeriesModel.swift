@@ -13,10 +13,4 @@ public struct SeriesModel: Identifiable {
 
     public let title: String
     public let imageUrl: String
-
-    public init(id: Int, title: String, imageUrl: String) {
-        self.id = id
-        self.title = title
-        self.imageUrl = imageUrl
-    }
 }
