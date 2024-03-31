@@ -34,11 +34,11 @@ class DetailsViewModel: ObservableObject {
 
     func onAppear() async {
         do {
-            async let character: CharacterModel = detailsService.getCharacter(by: characterID).get()
-            async let comics: [ComicModel] = detailsService.getComics(upTo: 3, by: characterID).get()
-            async let events: [EventModel] = detailsService.getEvents(upTo: 3, by: characterID).get()
-            async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, by: characterID).get()
-            async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, by: characterID).get()
+            async let character: CharacterModel = detailsService.getCharacter(of: characterID).get()
+            async let comics: [ComicModel] = detailsService.getComics(upTo: 3, of: characterID).get()
+            async let events: [EventModel] = detailsService.getEvents(upTo: 3, of: characterID).get()
+            async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, of: characterID).get()
+            async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, of: characterID).get()
 
             let data: UIState.ViewData = try await .init(character: character,
                                                          comics: comics,

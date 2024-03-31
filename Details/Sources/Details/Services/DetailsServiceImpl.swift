@@ -12,7 +12,7 @@ struct DetailsServiceImpl: DetailsService {
 
     let charactersApi: CharactersApi
 
-    func getCharacter(by characterId: Int) async throws -> Result<CharacterModel, Error> {
+    func getCharacter(of characterId: Int) async throws -> Result<CharacterModel, Error> {
         do {
             let response: CharacterResponse = try await charactersApi.getCharacter(by: characterId)
             return .success(try await parseMarvelCharacter(response: response))
@@ -21,7 +21,7 @@ struct DetailsServiceImpl: DetailsService {
         }
     }
 
-    func getComics(upTo limit: Int, by characterId: Int) async throws -> Result<[ComicModel], Error> {
+    func getComics(upTo limit: Int, of characterId: Int) async throws -> Result<[ComicModel], Error> {
         do {
             let response: ComicsResponse = try await charactersApi.getComics(upTo: limit, by: characterId)
             return .success(try await parseMarvelComics(response: response))
@@ -30,7 +30,7 @@ struct DetailsServiceImpl: DetailsService {
         }
     }
 
-    func getEvents(upTo limit: Int, by characterId: Int) async throws -> Result<[EventModel], Error> {
+    func getEvents(upTo limit: Int, of characterId: Int) async throws -> Result<[EventModel], Error> {
         do {
             let response: EventsResponse = try await charactersApi.getEvents(upTo: limit, by: characterId)
             return .success(try await parseMarvelEvents(response: response))
@@ -39,7 +39,7 @@ struct DetailsServiceImpl: DetailsService {
         }
     }
 
-    func getSeries(upTo limit: Int, by characterId: Int) async throws -> Result<[SeriesModel], Error> {
+    func getSeries(upTo limit: Int, of characterId: Int) async throws -> Result<[SeriesModel], Error> {
         do {
             let response: SeriesResponse = try await charactersApi.getSeries(upTo: limit, by: characterId)
             return .success(try await parseMarvelSeries(response: response))
@@ -48,7 +48,7 @@ struct DetailsServiceImpl: DetailsService {
         }
     }
 
-    func getStories(upTo limit: Int, by characterId: Int) async throws -> Result<[StoriesModel], Error> {
+    func getStories(upTo limit: Int, of characterId: Int) async throws -> Result<[StoriesModel], Error> {
         do {
             let response: StoriesResponse = try await charactersApi.getStories(upTo: limit, by: characterId)
             return .success(try await parseMarvelStories(response: response))
