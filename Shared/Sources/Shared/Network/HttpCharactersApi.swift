@@ -35,9 +35,7 @@ public struct HttpCharactersApi: CharactersApi {
         return try await decode(url: generateUrl(route: "/\(characterId)/stories", limit: limit))
     }
 
-    private func decode<T: Decodable>(url: URL?) async throws -> T {
-        guard let url else { throw ApiError.invalidURL}
-
+    private func decode<T: Decodable>(url: URL) async throws -> T {
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(from: url)
 
         guard let response = response as? HTTPURLResponse else { throw ApiError.badResponse }
