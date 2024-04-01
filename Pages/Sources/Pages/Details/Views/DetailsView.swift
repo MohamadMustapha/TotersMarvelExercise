@@ -5,11 +5,13 @@
 //  Created by Mohamad Mustapha on 31/03/2024.
 //
 
+import Nuke
 import Shared
 import SwiftUI
 
 public struct DetailsView: View {
 
+    @Environment(\.appDataCache) private var appDataCache: DataCache?
     @Environment(\.dismiss) private var dismiss: DismissAction
 
     @StateObject private var viewModel: DetailsViewModel = .init()
@@ -60,13 +62,13 @@ public struct DetailsView: View {
             case .error:
                 ErrorView {
                     Task {
-                        await viewModel.onAppear(characterId:characterId)
+                        await viewModel.onAppear(characterId:characterId,  dataCache: appDataCache)
                     }
                 }
             }
         }
         .task {
-            await viewModel.onAppear(characterId: characterId)
+            await viewModel.onAppear(characterId: characterId, dataCache: appDataCache)
         }
     }
 

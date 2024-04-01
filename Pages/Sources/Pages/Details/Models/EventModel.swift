@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EventModel: Identifiable {
+public struct EventModel: Identifiable, Codable {
 
     public let id: Int
 

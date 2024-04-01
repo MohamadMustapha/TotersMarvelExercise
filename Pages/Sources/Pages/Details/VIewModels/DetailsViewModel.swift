@@ -6,14 +6,16 @@
 //
 
 import Network
-import SwiftUI
+import Nuke
 import Shared
+import SwiftUI
 
+@MainActor
 class DetailsViewModel: ObservableObject {
 
     enum UIState {
 
-        struct ViewData {
+        struct ViewData: Codable {
 
             let character: CharacterModel
             let comics: [ComicModel]
@@ -24,32 +26,44 @@ class DetailsViewModel: ObservableObject {
         case loading, loaded(data: ViewData), error
     }
 
+    #warning("Add environment variable")
+    private static func characterCacheKey(id: Int) -> String {
+        return "character-\(id)"
+    }
+
     @Published private(set) var state: UIState = .loading
 
     private let detailsService: DetailsService = DetailsServiceImpl(charactersApi: HttpCharactersApi())
 
-    public init() {
-    }
+    public init() { }
 
-    func onAppear(characterId: Int) async {
+    func onAppear(characterId: Int, dataCache: DataCache?) async {
         do {
-            async let character: CharacterModel = detailsService.getCharacter(of: characterId).get()
-            async let comics: [ComicModel] = detailsService.getComics(upTo: 3, of: characterId).get()
-            async let events: [EventModel] = detailsService.getEvents(upTo: 3, of: characterId).get()
-            async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, of: characterId).get()
-            async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, of: characterId).get()
+            let viewData: UIState.ViewData
+            if dataCache?.containsData(for: Self.characterCacheKey(id: characterId)) == true,
+               let data: Data = dataCache?.cachedData(for: Self.characterCacheKey(id: characterId)) {
+                viewData = try JSONDecoder().decode(UIState.ViewData.self, from: data)
+            } else {
+                async let character: CharacterModel = detailsService.getCharacter(of: characterId).get()
+                async let comics: [ComicModel] = detailsService.getComics(upTo: 3, of: characterId).get()
+                async let events: [EventModel] = detailsService.getEvents(upTo: 3, of: characterId).get()
+                async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, of: characterId).get()
+                async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, of: characterId).get()
 
-            let data: UIState.ViewData = try await .init(character: character,
-                                                         comics: comics,
-                                                         series: series,
-                                                         events: events,
-                                                         stories: stories)
-            withAnimation {
-                state = .loaded(data: data)
+                viewData = try await .init(character: character,
+                                           comics: comics,
+                                           series: series,
+                                           events: events,
+                                           stories: stories)
+                let data: Data = try JSONEncoder().encode(viewData)
+                dataCache?.storeData(data, for: Self.characterCacheKey(id: characterId))
             }
 
+            withAnimation {
+                state = .loaded(data: viewData)
+            }
         } catch {
-            print("couldn't load details, error \(error.localizedDescription)")
+            print("Could not retrieve view data from service with error: \(error)")
             state = .error
         }
     }

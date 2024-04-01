@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct StoriesModel: Identifiable {
+public struct StoriesModel: Identifiable, Codable {
 
     public let id: Int
 

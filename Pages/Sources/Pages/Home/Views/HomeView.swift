@@ -48,7 +48,7 @@ public struct HomeView: View {
             case .error:
                 ErrorView {
                     Task {
-                        await viewModel.clearCharactersAndRefetch(dataCache: appDataCache)
+                        await viewModel.onAppear(dataCache: appDataCache)
                     }
                 }
             }

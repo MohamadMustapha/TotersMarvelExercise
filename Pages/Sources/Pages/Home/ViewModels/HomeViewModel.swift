@@ -47,11 +47,4 @@ class HomeViewModel : ObservableObject {
             uiState = .error
         }
     }
-
-    func clearCharactersAndRefetch(dataCache: DataCache?) async {
-        withAnimation {
-            uiState = .loading
-        }
-        await onAppear(dataCache: dataCache)
-    }
 }

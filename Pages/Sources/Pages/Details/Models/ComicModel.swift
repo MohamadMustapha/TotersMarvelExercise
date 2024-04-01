@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ComicModel: Identifiable {
+public struct ComicModel: Identifiable, Codable {
 
     public let id: Int
 
