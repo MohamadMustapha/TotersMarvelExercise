@@ -12,7 +12,7 @@ class HomeViewModel: ObservableObject {
 
     enum UIState {
 
-        case loading, loaded(marvelCharacters: [CharacterModel]), error
+        case loading, loaded(characters: [CharacterModel]), error
     }
 
     @Published private(set) var uiState: UIState = .loading
@@ -23,12 +23,12 @@ class HomeViewModel: ObservableObject {
 
     func onAppear() async {
         do {
-            let marvelCharacters: [CharacterModel] = try await homeService.getCharacters().get()
+            let characters: [CharacterModel] = try await homeService.getCharacters().get()
             withAnimation {
-                self.uiState = .loaded(marvelCharacters: marvelCharacters)
+                self.uiState = .loaded(characters: characters)
             }
         } catch {
-            print("Could not retrieve characters from service with error: \(error.localizedDescription)")
+            print("Could not retrieve home characters from service with error: \(error.localizedDescription)")
             self.uiState = .error
         }
     }

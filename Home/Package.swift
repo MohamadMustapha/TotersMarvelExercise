@@ -12,6 +12,7 @@ let package: Package = .init(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
+        .detailsPackageDependency,
         .kingFisherPackageDependency,
         .sharedPackageDependency,
         .swiftLintPackageDependency
@@ -32,6 +33,8 @@ fileprivate extension Product {
 
 fileprivate extension Package.Dependency {
 
+    static let detailsPackageDependency: Package.Dependency = package(path: "../Details")
+
     static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
                                                                          exact: "7.10.2")
 
@@ -47,6 +50,7 @@ fileprivate extension String {
     static let home: String = "Home"
 
     // MARK: Packages
+    static let details: String = "Details"
     static let kingFisher: String = "Kingfisher"
     static let shared: String = "Shared"
     static let swiftLint: String = "SwiftLint"
@@ -65,7 +69,8 @@ fileprivate extension SupportedPlatform {
 fileprivate extension Target {
 
     static let homeTarget: Target = target(name: .home,
-                                           dependencies: [.kingFisherDependency,
+                                           dependencies: [.detailsDependency,
+                                                          .kingFisherDependency,
                                                           .sharedDependency],
                                            plugins: [.swiftLintPlugin])
     static let homeTestTarget: Target = testTarget(name: .home.testTarget,
@@ -75,6 +80,7 @@ fileprivate extension Target {
 
 fileprivate extension Target.Dependency {
 
+    static let detailsDependency: Target.Dependency = byName(name: .details)
     static let homeDependency: Target.Dependency = byName(name: .home)
     static let kingFisherDependency: Target.Dependency = byName(name: .kingFisher)
     static let sharedDependency: Target.Dependency = byName(name: .shared)

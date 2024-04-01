@@ -8,7 +8,7 @@
 import Shared
 import SwiftUI
 
-struct DetailsView: View {
+public struct DetailsView: View {
 
     @StateObject private var viewModel: DetailsViewModel = .init()
 
@@ -17,7 +17,8 @@ struct DetailsView: View {
     public init(characterId: Int) {
         self.characterId = characterId
     }
-    var body: some View {
+
+    public var body: some View {
         VStack {
             switch viewModel.state {
             case .loading:
