@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CharacterModel: Identifiable {
+public struct CharacterModel: Identifiable, Codable {
 
     public let id: Int
     public let name: String

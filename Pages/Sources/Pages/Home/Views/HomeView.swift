@@ -5,10 +5,13 @@
 //  Created by Mohamad Mustapha on 30/03/2024.
 //
 
+import Nuke
 import Shared
 import SwiftUI
 
 public struct HomeView: View {
+
+    @Environment(\.appDataCache) private var appDataCache: DataCache?
 
     @StateObject private var viewModel: HomeViewModel = .init()
 
@@ -45,13 +48,13 @@ public struct HomeView: View {
             case .error:
                 ErrorView {
                     Task {
-                        await viewModel.onAppear()
+                        await viewModel.clearCharactersAndRefetch(dataCache: appDataCache)
                     }
                 }
             }
         }
         .task {
-            await viewModel.onAppear()
+            await viewModel.onAppear(dataCache: appDataCache)
         }
     }
 }

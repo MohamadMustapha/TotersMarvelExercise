@@ -14,6 +14,7 @@ let package: Package = .init(
         // Dependencies declare other packages that this package depends on.
         .kingFisherPackageDependency,
         .networkPackageDependency,
+        .nukePackageDependency,
         .sharedPackageDependency,
         .swiftLintPackageDependency
     ],
@@ -33,12 +34,16 @@ fileprivate extension Product {
 
 fileprivate extension Package.Dependency {
 
-    static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
-                                                                         exact: "7.10.2")
 
     static let networkPackageDependency: Package.Dependency = package(path: "../Network")
 
     static let sharedPackageDependency: Package.Dependency = package(path: "../Shared")
+
+    static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
+                                                                         exact: "7.10.2")
+
+    static let nukePackageDependency: Package.Dependency = package(url: "https://github.com/kean/Nuke",
+                                                                   exact: "12.5.0")
 
     static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint",
                                                                         exact: "0.54.0")
@@ -52,6 +57,7 @@ fileprivate extension String {
     // MARK: Packages
     static let kingFisher: String = "Kingfisher"
     static let network: String = "Network"
+    static let nuke: String = "Nuke"
     static let shared: String = "Shared"
     static let swiftLint: String = "SwiftLint"
 
@@ -71,6 +77,7 @@ fileprivate extension Target {
     static let pagesTarget: Target = target(name: .pages,
                                            dependencies: [.kingFisherDependency,
                                                           .networkDependency,
+                                                          .nukeDependency,
                                                           .sharedDependency],
                                            plugins: [.swiftLintPlugin])
     static let pagesTestTarget: Target = testTarget(name: .pages.testTarget,
@@ -82,6 +89,7 @@ fileprivate extension Target.Dependency {
 
     static let kingFisherDependency: Target.Dependency = byName(name: .kingFisher)
     static let networkDependency: Target.Dependency = byName(name: .network)
+    static let nukeDependency: Target.Dependency = byName(name: .nuke)
     static let pagesDependency: Target.Dependency = byName(name: .pages)
     static let sharedDependency: Target.Dependency = byName(name: .shared)
 }

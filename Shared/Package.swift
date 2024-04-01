@@ -13,6 +13,7 @@ let package: Package = .init(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .lottiePackageDependency,
+        .nukePackageDependency,
         .swiftLintPackageDependency
     ],
     targets: [
@@ -31,6 +32,9 @@ fileprivate extension Product {
 
 fileprivate extension Package.Dependency {
 
+    static let nukePackageDependency: Package.Dependency = package(url: "https://github.com/kean/Nuke",
+                                                                   exact: "12.5.0")
+
     static let lottiePackageDependency: Package.Dependency = package(url: "https://github.com/airbnb/lottie-spm", exact: "4.4.1")
 
     static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint",
@@ -45,6 +49,7 @@ fileprivate extension String {
     // MARK: Packages
     static let lottie: String = "Lottie"
     static let lottieSpm: String = "lottie-spm"
+    static let nuke: String = "Nuke"
 
     static let swiftLint: String = "SwiftLint"
 
@@ -62,7 +67,8 @@ fileprivate extension SupportedPlatform {
 fileprivate extension Target {
 
     static let sharedTarget: Target = target(name: .shared,
-                                             dependencies: [.lottieDependency],
+                                             dependencies: [.lottieDependency,
+                                                            .nukeDependency],
                                              plugins: [.swiftLintPlugin])
 
     static let sharedTestTarget: Target = testTarget(name: .shared.testTarget,
@@ -74,6 +80,9 @@ fileprivate extension Target.Dependency {
 
     static let lottieDependency: Target.Dependency = product(name: .lottie,
                                                              package: .lottieSpm)
+
+    static let nukeDependency: Target.Dependency = byName(name: .nuke)
+
     static let sharedDependency: Target.Dependency = byName(name: .shared)
 }
 
