@@ -24,21 +24,19 @@ class DetailsViewModel: ObservableObject {
     }
 
     @Published private(set) var state: UIState = .loading
-    
-    private let characterID: Int
+
     private let detailsService: DetailsService = DetailsServiceImpl(charactersApi: HttpCharactersApi())
 
-    public init(characterID: Int) {
-        self.characterID = characterID
+    public init() {
     }
 
-    func onAppear() async {
+    func onAppear(characterId: Int) async {
         do {
-            async let character: CharacterModel = detailsService.getCharacter(of: characterID).get()
-            async let comics: [ComicModel] = detailsService.getComics(upTo: 3, of: characterID).get()
-            async let events: [EventModel] = detailsService.getEvents(upTo: 3, of: characterID).get()
-            async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, of: characterID).get()
-            async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, of: characterID).get()
+            async let character: CharacterModel = detailsService.getCharacter(of: characterId).get()
+            async let comics: [ComicModel] = detailsService.getComics(upTo: 3, of: characterId).get()
+            async let events: [EventModel] = detailsService.getEvents(upTo: 3, of: characterId).get()
+            async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, of: characterId).get()
+            async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, of: characterId).get()
 
             let data: UIState.ViewData = try await .init(character: character,
                                                          comics: comics,

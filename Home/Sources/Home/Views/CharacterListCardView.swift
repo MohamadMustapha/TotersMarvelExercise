@@ -34,6 +34,8 @@ public struct CharacterListCardView: View {
                 .aspectRatio(27/40, contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
+            Text(String(item.id))
+
             Text(item.name)
                 .tracking(0.2)
                 .font(.title2)
