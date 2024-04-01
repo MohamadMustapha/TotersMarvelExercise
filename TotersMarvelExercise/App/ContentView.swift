@@ -5,20 +5,17 @@
 //  Created by Mohamad Mustapha on 28/03/2024.
 //
 
+import Pages
 import SwiftUI
 
 struct ContentView: View {
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        HomeView()
     }
 }
 
 #Preview {
+
     ContentView()
 }

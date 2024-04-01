@@ -12,8 +12,8 @@
 		D1504BDC2BB61842006953C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1504BDB2BB61842006953C9 /* ContentView.swift */; };
 		D1504BDE2BB61844006953C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1504BDD2BB61844006953C9 /* Assets.xcassets */; };
 		D1504BE12BB61844006953C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1504BE02BB61844006953C9 /* Preview Assets.xcassets */; };
-		D15064A72BB794FE0052D5CF /* Details in Frameworks */ = {isa = PBXBuildFile; productRef = D15064A62BB794FE0052D5CF /* Details */; };
-		D15064A92BB794FE0052D5CF /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = D15064A82BB794FE0052D5CF /* Home */; };
+		D193C28F2BBB080A0079CF9E /* Pages in Frameworks */ = {isa = PBXBuildFile; productRef = D193C28E2BBB080A0079CF9E /* Pages */; };
+		D193C2912BBB080E0079CF9E /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = D193C2902BBB080E0079CF9E /* Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +23,9 @@
 		D1504BDB2BB61842006953C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D1504BDD2BB61844006953C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1504BE02BB61844006953C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D152A2322BB73B7D00FFB6D5 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Home; sourceTree = "<group>"; };
-		D152A2332BB73CCD00FFB6D5 /* Details */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Details; sourceTree = "<group>"; };
+		D193C28C2BBB05390079CF9E /* Pages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Pages; sourceTree = "<group>"; };
+		D193C28D2BBB06C20079CF9E /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
+		D193C2932BBB10670079CF9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,9 +33,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D15064A72BB794FE0052D5CF /* Details in Frameworks */,
-				D15064A92BB794FE0052D5CF /* Home in Frameworks */,
+				D193C2912BBB080E0079CF9E /* Network in Frameworks */,
 				D14A3E1B2BB891AF00F3D242 /* Shared in Frameworks */,
+				D193C28F2BBB080A0079CF9E /* Pages in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,9 +62,9 @@
 		D1504BCD2BB61842006953C9 = {
 			isa = PBXGroup;
 			children = (
+				D193C28D2BBB06C20079CF9E /* Network */,
+				D193C28C2BBB05390079CF9E /* Pages */,
 				D14A3E192BB88C2000F3D242 /* Shared */,
-				D152A2332BB73CCD00FFB6D5 /* Details */,
-				D152A2322BB73B7D00FFB6D5 /* Home */,
 				D1504BD82BB61842006953C9 /* TotersMarvelExercise */,
 				D1504BD72BB61842006953C9 /* Products */,
 				D15064A52BB794F50052D5CF /* Frameworks */,
@@ -81,6 +82,7 @@
 		D1504BD82BB61842006953C9 /* TotersMarvelExercise */ = {
 			isa = PBXGroup;
 			children = (
+				D193C2932BBB10670079CF9E /* Info.plist */,
 				D14B90CD2BB716DA00D6F00B /* App */,
 				D14B90CE2BB716E300D6F00B /* Assets */,
 				D1504BDF2BB61844006953C9 /* Preview Content */,
@@ -120,9 +122,9 @@
 			);
 			name = TotersMarvelExercise;
 			packageProductDependencies = (
-				D15064A62BB794FE0052D5CF /* Details */,
-				D15064A82BB794FE0052D5CF /* Home */,
 				D14A3E1A2BB891AF00F3D242 /* Shared */,
+				D193C28E2BBB080A0079CF9E /* Pages */,
+				D193C2902BBB080E0079CF9E /* Network */,
 			);
 			productName = TotersMarvelExercise;
 			productReference = D1504BD62BB61842006953C9 /* TotersMarvelExercise.app */;
@@ -153,6 +155,7 @@
 			);
 			mainGroup = D1504BCD2BB61842006953C9;
 			packageReferences = (
+				D193C28B2BBB04570079CF9E /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = D1504BD72BB61842006953C9 /* Products */;
 			projectDirPath = "";
@@ -318,6 +321,7 @@
 				DEVELOPMENT_TEAM = VV2UJ2245R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TotersMarvelExercise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -348,6 +352,7 @@
 				DEVELOPMENT_TEAM = VV2UJ2245R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TotersMarvelExercise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -390,18 +395,29 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		D193C28B2BBB04570079CF9E /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		D14A3E1A2BB891AF00F3D242 /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Shared;
 		};
-		D15064A62BB794FE0052D5CF /* Details */ = {
+		D193C28E2BBB080A0079CF9E /* Pages */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Details;
+			productName = Pages;
 		};
-		D15064A82BB794FE0052D5CF /* Home */ = {
+		D193C2902BBB080E0079CF9E /* Network */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Home;
+			productName = Network;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
