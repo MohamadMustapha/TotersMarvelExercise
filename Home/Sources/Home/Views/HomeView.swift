@@ -5,6 +5,7 @@
 //  Created by Mohamad Mustapha on 30/03/2024.
 //
 
+import Shared
 import SwiftUI
 
 struct HomeView: View {
@@ -22,8 +23,11 @@ struct HomeView: View {
                 CharacterListView(items: marvelCharacters)
                     .navigationTitle(.init("Marvel"))
             case .error:
-                #warning("Do error view")
-                EmptyView()
+                ErrorView {
+                    Task {
+                        await viewModel.onAppear()
+                    }
+                }
             }
         }
         .task {
