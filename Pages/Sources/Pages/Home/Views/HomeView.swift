@@ -22,8 +22,9 @@ public struct HomeView: View {
             switch viewModel.uiState {
 
             case .loading:
-                ProgressView()
-                    .controlSize(.large)
+                withAnimation {
+                    LottieLoaderView(animation: .thor)
+                }
             case .loaded(let characters):
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20) {

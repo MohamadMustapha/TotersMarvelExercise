@@ -24,8 +24,8 @@ struct DetailsHeaderView: View {
             ZStack(alignment: .topLeading) {
                 KFImage(.init(string: item.imageUrl))
                     .placeholder {
-                        ProgressView()
-                            .controlSize(.large)
+                        LottieLoaderView(animation: .ironMan)
+                            .frame(width: 50)
                     }
                     .fade(duration: 0.5)
                     .forceTransition(true)

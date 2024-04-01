@@ -25,8 +25,8 @@ public struct CharacterListCardView: View {
         VStack(alignment: .leading) {
             KFImage(.init(string: item.imageUrl))
                 .placeholder {
-                    ProgressView()
-                        .controlSize(.large)
+                    LottieLoaderView(animation: .ironMan)
+                        .frame(width: 50)
                 }
                 .fade(duration: 0.5)
                 .forceTransition(true)

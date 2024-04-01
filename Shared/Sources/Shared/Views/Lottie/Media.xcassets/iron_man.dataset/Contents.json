@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "iron_man.json",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

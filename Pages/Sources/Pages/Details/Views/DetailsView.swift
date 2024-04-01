@@ -27,8 +27,8 @@ public struct DetailsView: View {
                 ZStack {
                     VStack {
                         Spacer()
-                        ProgressView()
-                            .controlSize(.large)
+                        LottieLoaderView(animation: .ironMan)
+                            .frame(width: 50)
                         Spacer()
                     }
                     backButton

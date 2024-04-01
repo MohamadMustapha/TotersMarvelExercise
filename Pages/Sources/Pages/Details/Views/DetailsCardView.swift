@@ -41,8 +41,8 @@ struct DetailsCardView: View {
                     .fade(duration: 0.5)
                     .forceTransition(true)
                     .placeholder {
-                        ProgressView()
-                            .controlSize(.large)
+                        LottieLoaderView(animation: .ironMan)
+                            .frame(width: 50)
                     }
                     .resizable()
                     .aspectRatio(3/4, contentMode: .fit)

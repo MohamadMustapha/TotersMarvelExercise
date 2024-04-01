@@ -12,6 +12,7 @@ let package: Package = .init(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
+        .lottiePackageDependency,
         .swiftLintPackageDependency
     ],
     targets: [
@@ -30,6 +31,8 @@ fileprivate extension Product {
 
 fileprivate extension Package.Dependency {
 
+    static let lottiePackageDependency: Package.Dependency = package(url: "https://github.com/airbnb/lottie-spm", exact: "4.4.1")
+
     static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint",
                                                                         exact: "0.54.0")
 }
@@ -40,6 +43,9 @@ fileprivate extension String {
     static let shared: String = "Shared"
 
     // MARK: Packages
+    static let lottie: String = "Lottie"
+    static let lottieSpm: String = "lottie-spm"
+
     static let swiftLint: String = "SwiftLint"
 
     // MARK: Plugins
@@ -56,15 +62,18 @@ fileprivate extension SupportedPlatform {
 fileprivate extension Target {
 
     static let sharedTarget: Target = target(name: .shared,
-                                           plugins: [.swiftLintPlugin])
+                                             dependencies: [.lottieDependency],
+                                             plugins: [.swiftLintPlugin])
 
     static let sharedTestTarget: Target = testTarget(name: .shared.testTarget,
-                                                   dependencies: [.sharedDependency],
+                                                     dependencies: [.sharedDependency],
                                                    plugins: [.swiftLintPlugin])
 }
 
 fileprivate extension Target.Dependency {
 
+    static let lottieDependency: Target.Dependency = product(name: .lottie,
+                                                             package: .lottieSpm)
     static let sharedDependency: Target.Dependency = byName(name: .shared)
 }
 
