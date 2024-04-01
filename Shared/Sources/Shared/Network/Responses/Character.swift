@@ -15,6 +15,7 @@ public struct CharacterResponse: Decodable {
 public struct CharacterDataContainer: Decodable {
 
     public let results: [Character]?
+    public let total: Int?
 }
 
 public struct Character: Decodable, Identifiable {

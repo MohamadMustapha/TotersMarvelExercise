@@ -9,7 +9,7 @@ import Foundation
 
 public protocol CharactersApi: Api {
 
-    func getCharacters(upTo limit: Int) async throws -> CharacterResponse
+    func getCharacters(upTo limit: Int, offset: Int) async throws -> CharacterResponse
     func getCharacter(by id: Int) async throws -> CharacterResponse
     func getComics(upTo limit: Int, by characterId: Int) async throws -> ComicsResponse
     func getEvents(upTo limit: Int, by characterId: Int) async throws -> EventsResponse

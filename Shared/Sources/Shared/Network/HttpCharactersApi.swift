@@ -11,8 +11,8 @@ public struct HttpCharactersApi: CharactersApi {
 
     public init() { }
 
-    public func getCharacters(upTo limit: Int) async throws -> CharacterResponse {
-        return try await decode(url: generateUrl(limit: limit) )
+    public func getCharacters(upTo limit: Int, offset: Int) async throws -> CharacterResponse {
+        return try await decode(url: generateUrl(limit: limit, offset: offset) )
     }
 
     public func getCharacter(by id: Int) async throws -> CharacterResponse {

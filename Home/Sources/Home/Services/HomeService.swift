@@ -14,6 +14,7 @@ protocol HomeService {
 }
 
 enum HomeServiceError: Error {
-    
+
     case noObjectsFound
+    case noTotalFound
 }

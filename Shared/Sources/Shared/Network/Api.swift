@@ -17,7 +17,7 @@ public enum ApiError: Error {
 
 public protocol Api {
 
-    func generateUrl(route: String, limit: Int) throws -> URL
+    func generateUrl(route: String, limit: Int, offset: Int) throws -> URL
 }
 
 public extension Api {
@@ -31,11 +31,12 @@ public extension Api {
         return hash.map { String(format: "%02hhx", $0) }.joined()
     }
 
-    func generateUrl(route: String = "", limit: Int) throws -> URL {
+    func generateUrl(route: String = "", limit: Int, offset: Int = 0) throws -> URL {
         let timeStamp = String(Date().timeIntervalSince1970)
         let hash = MD5Hash(from: "\(timeStamp)\(privateKey)\(publicKey)")
 
-        guard let url: URL = .init(string: "\(urlString)\(route)?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(hash)&limit=\(limit)" ) else { throw ApiError.invalidURL }
+        guard let url: URL = .init(string: "\(urlString)\(route)?ts=\(timeStamp)&apikey=\(publicKey)&hash=\(hash)&limit=\(limit)&offset=\(offset)" )
+        else { throw ApiError.invalidURL }
 
         return url
     }

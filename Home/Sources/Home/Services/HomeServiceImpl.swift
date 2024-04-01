@@ -12,10 +12,39 @@ struct HomeServiceImpl: HomeService {
 
     let charactersApi: CharactersApi
 
+    private static let limit: Int = 100
+
     func getCharacters() async -> Result<[CharacterModel], Error> {
         do {
-            let response: CharacterResponse = try await charactersApi.getCharacters(upTo: 100)
-            return .success(try parseMarvelCharacters(response: response))
+            let response: CharacterResponse = try await charactersApi.getCharacters(upTo: Self.limit, offset: 0)
+
+            guard let total: Int = response.data?.total else { throw HomeServiceError.noTotalFound }
+
+            var characters: [CharacterModel] = []
+            // Reserve capacity to avoid multiple reallocations
+            characters.reserveCapacity(total)
+            // Append characters from the first response
+            characters.append(contentsOf: try parseMarvelCharacters(response: response))
+            // Create task group to make parallel calls to retrieve all characters past the limit
+            characters.append(
+                contentsOf: try await withThrowingTaskGroup(
+                    of: CharacterResponse.self,
+                    returning: [CharacterModel].self
+                ) { taskGroup in
+                    for offset in stride(from: Self.limit, to: total, by: Self.limit) {
+                        // fetch 100 characters starting from the offset
+                        taskGroup.addTask { try await charactersApi.getCharacters(upTo: Self.limit, offset: offset) }
+                    }
+
+                    var characters: [CharacterModel] = []
+                    // Use taskGroup.next() to cancel the task group if any child task throws an error
+                    while let response: CharacterResponse = try await taskGroup.next() {
+                        characters.append(contentsOf: try parseMarvelCharacters(response: response))
+                    }
+                    return characters
+                }
+            )
+            return .success(characters)
         } catch {
             return .failure(error)
         }
