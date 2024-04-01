@@ -11,6 +11,8 @@ import SwiftUI
 
 struct DetailsHeaderView: View {
 
+    @Environment(\.dismiss) private var dismiss: DismissAction
+
     private let item: CharacterModel
 
     public init(item: CharacterModel) {
@@ -19,15 +21,19 @@ struct DetailsHeaderView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            KFImage(.init(string: item.imageUrl))
-                .placeholder {
-                    ProgressView()
-                        .controlSize(.large)
-                }
-                .fade(duration: 0.5)
-                .forceTransition(true)
-                .resizable()
+            ZStack(alignment: .topLeading) {
+                KFImage(.init(string: item.imageUrl))
+                    .placeholder {
+                        ProgressView()
+                            .controlSize(.large)
+                    }
+                    .fade(duration: 0.5)
+                    .forceTransition(true)
+                    .resizable()
                 .aspectRatio(27/30, contentMode: .fill)
+
+                backButton
+            }
 
             VStack(alignment: .leading) {
                 HStack {
@@ -54,6 +60,21 @@ struct DetailsHeaderView: View {
             }
             .padding(.horizontal, 10)
         }
+    }
+
+    @ViewBuilder
+    private var backButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "arrow.backward")
+                .foregroundColor(.white)
+                .padding(10)
+                .background(.ultraThinMaterial)
+                .clipShape(Circle())
+        }
+        .padding(.horizontal, 10)
+        .padding(.top, 50)
     }
 }
 

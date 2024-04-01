@@ -10,6 +10,8 @@ import SwiftUI
 
 public struct DetailsView: View {
 
+    @Environment(\.dismiss) private var dismiss: DismissAction
+
     @StateObject private var viewModel: DetailsViewModel = .init()
 
     private let characterId: Int
@@ -22,10 +24,15 @@ public struct DetailsView: View {
         VStack {
             switch viewModel.state {
             case .loading:
-                Spacer()
-                ProgressView()
-                    .controlSize(.large)
-                Spacer()
+                ZStack {
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                            .controlSize(.large)
+                        Spacer()
+                    }
+                    backButton
+                }
             case .loaded(let data):
                 GeometryReader { proxy in
                     ScrollView(showsIndicators: false) {
@@ -61,6 +68,28 @@ public struct DetailsView: View {
         .task {
             await viewModel.onAppear(characterId: characterId)
         }
+    }
+
+    @ViewBuilder
+    private var backButton: some View {
+        VStack {
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.gray)
+                        .padding(10)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Circle())
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            .padding(.top, 50)
+            Spacer()
+        }
+        .ignoresSafeArea()
     }
 }
 
