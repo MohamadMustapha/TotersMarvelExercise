@@ -1,6 +1,6 @@
 //
 //  CharacterListCardView.swift
-//  TotersMarvelExercise
+//  MarvelApi
 //
 //  Created by Mohamad Mustapha on 29/03/2024.
 //

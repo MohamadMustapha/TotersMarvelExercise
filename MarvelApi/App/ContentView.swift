@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  TotersMarvelExercise
+//  MarvelApi
 //
 //  Created by Mohamad Mustapha on 28/03/2024.
 //
