@@ -15,6 +15,8 @@ public struct HomeView: View {
 
     @StateObject private var viewModel: HomeViewModel = .init()
 
+    @State private var showAlert: Bool = false
+
     private let columns: [GridItem] = [.init(.flexible(), spacing: 20, alignment: .top),
                                        .init(.flexible(), spacing: 20, alignment: .top)]
 
@@ -27,6 +29,7 @@ public struct HomeView: View {
             case .loading:
                 withAnimation {
                     LottieLoaderView(animation: .thor)
+                        .offset(y:  -50)
                 }
             case .loaded(let characters):
                 ScrollView(showsIndicators: false) {
@@ -45,6 +48,18 @@ public struct HomeView: View {
                 .navigationTitle("Marvel")
                 .scrollIfNeeded(axes: .vertical)
                 .padding(.horizontal)
+                .toolbar {
+                    Button("Delete caches") {
+                        showAlert.toggle()
+                    }
+                    .alert("Are you sure you want to delete you caches",
+                           isPresented: $showAlert) {
+                        Button("No", role: .cancel) {}
+                        Button("Confirm", role: .destructive) {
+                            viewModel.deleteCaches(dataCache: appDataCache)
+                        }
+                    }
+                }
             case .error:
                 ErrorView {
                     Task {

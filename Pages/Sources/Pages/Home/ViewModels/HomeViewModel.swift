@@ -47,4 +47,8 @@ class HomeViewModel : ObservableObject {
             uiState = .error
         }
     }
+
+    func deleteCaches(dataCache: DataCache?) {
+        dataCache?.removeAll()
+    }
 }

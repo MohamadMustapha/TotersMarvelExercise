@@ -45,10 +45,10 @@ class DetailsViewModel: ObservableObject {
                 viewData = try JSONDecoder().decode(UIState.ViewData.self, from: data)
             } else {
                 async let character: CharacterModel = detailsService.getCharacter(of: characterId).get()
-                async let comics: [ComicModel] = detailsService.getComics(upTo: 3, of: characterId).get()
-                async let events: [EventModel] = detailsService.getEvents(upTo: 3, of: characterId).get()
-                async let series: [SeriesModel] = detailsService.getSeries(upTo: 3, of: characterId).get()
-                async let stories: [StoriesModel] = detailsService.getStories(upTo: 3, of: characterId).get()
+                async let comics: [ComicModel] = detailsService.getComics(upTo: 6, of: characterId).get()
+                async let events: [EventModel] = detailsService.getEvents(upTo: 6, of: characterId).get()
+                async let series: [SeriesModel] = detailsService.getSeries(upTo: 6, of: characterId).get()
+                async let stories: [StoriesModel] = detailsService.getStories(upTo: 6, of: characterId).get()
 
                 viewData = try await .init(character: character,
                                            comics: comics,
